@@ -1,0 +1,365 @@
+{
+  "Q75DepDateDiff": {
+    "type": "numeric",
+    "dtype": "float64",
+    "default": 2.0,
+    "minimum": 0.0,
+    "maximum": 2347.0,
+    "q01": 0.0,
+    "q99": 41.5
+  },
+  "ActivityPerDep": {
+    "type": "numeric",
+    "dtype": "float64",
+    "default": 0.7616,
+    "minimum": 0.0,
+    "maximum": 1.0,
+    "q01": 0.141384,
+    "q99": 1.0
+  },
+  "CountBets60Days": {
+    "type": "numeric",
+    "dtype": "float64",
+    "default": 91.0,
+    "minimum": 0.0,
+    "maximum": 25955.0,
+    "q01": 3.0,
+    "q99": 2087.1600000000035
+  },
+  "DepositCount": {
+    "type": "numeric",
+    "dtype": "float64",
+    "default": 111.0,
+    "minimum": 0.0,
+    "maximum": 2299.0,
+    "q01": 4.0,
+    "q99": 988.0
+  },
+  "BetAmountSumLast30_log": {
+    "type": "numeric",
+    "dtype": "float64",
+    "default": 9.998070422460186,
+    "minimum": 0.0,
+    "maximum": 15.852112446017996,
+    "q01": 5.278113842901904,
+    "q99": 13.842301429683161
+  },
+  "BetAmountSumLast30": {
+    "type": "numeric",
+    "dtype": "float64",
+    "default": 21983.005,
+    "minimum": 0.0,
+    "maximum": 7664519.0,
+    "q01": 194.99984,
+    "q99": 1027152.0033600024
+  },
+  "DepositCount_log": {
+    "type": "numeric",
+    "dtype": "float64",
+    "default": 4.718498871295094,
+    "minimum": 0.0,
+    "maximum": 7.7406644019172415,
+    "q01": 1.6094379124341003,
+    "q99": 6.8966943316227125
+  },
+  "LTV": {
+    "type": "numeric",
+    "dtype": "float64",
+    "default": 4560.0,
+    "minimum": 100.0,
+    "maximum": 553000.0,
+    "q01": 100.0,
+    "q99": 196818.4000000004
+  },
+  "LTV_log": {
+    "type": "numeric",
+    "dtype": "float64",
+    "default": 8.4252971767117,
+    "minimum": 4.61512051684126,
+    "maximum": 13.223115088821102,
+    "q01": 4.61512051684126,
+    "q99": 12.190041813041836
+  },
+  "StdDepDateDiff": {
+    "type": "numeric",
+    "dtype": "float64",
+    "default": 9.336065348841046,
+    "minimum": 0.0,
+    "maximum": 1352.7316807112932,
+    "q01": 0.408248290463863,
+    "q99": 218.51619427933292
+  },
+  "CountBets90Days": {
+    "type": "numeric",
+    "dtype": "float64",
+    "default": 127.0,
+    "minimum": 0.0,
+    "maximum": 42800.0,
+    "q01": 4.0,
+    "q99": 2962.1600000000035
+  },
+  "CountBets30Days_log": {
+    "type": "numeric",
+    "dtype": "float64",
+    "default": 3.871201010907891,
+    "minimum": 0.0,
+    "maximum": 9.567665104756411,
+    "q01": 0.6931471805599453,
+    "q99": 7.023758954738443
+  },
+  "BetAmountSumLast60": {
+    "type": "numeric",
+    "dtype": "float64",
+    "default": 44092.003,
+    "minimum": 0.0,
+    "maximum": 16661628.0,
+    "q01": 600.00284,
+    "q99": 1785452.3539600107
+  },
+  "GGR30Days": {
+    "type": "numeric",
+    "dtype": "float64",
+    "default": 3386.0,
+    "minimum": -727478.0,
+    "maximum": 1143847.0,
+    "q01": -51069.56,
+    "q99": 131178.08000000005
+  },
+  "BonusUsedCount": {
+    "type": "numeric",
+    "dtype": "float64",
+    "default": 11.0,
+    "minimum": 0.0,
+    "maximum": 480.0,
+    "q01": 0.0,
+    "q99": 118.0
+  },
+  "GGR30Days_log": {
+    "type": "numeric",
+    "dtype": "float64",
+    "default": 8.127699852817772,
+    "minimum": -6.907755278982136,
+    "maximum": 13.949908574961393,
+    "q01": -6.907755278982136,
+    "q99": 11.784318690898973
+  },
+  "BetAmountSumLast90": {
+    "type": "numeric",
+    "dtype": "float64",
+    "default": 63974.96599999999,
+    "minimum": 0.0,
+    "maximum": 17103923.0,
+    "q01": 939.9923599999998,
+    "q99": 2452060.918080018
+  },
+  "CountBets30Days": {
+    "type": "numeric",
+    "dtype": "float64",
+    "default": 47.0,
+    "minimum": 0.0,
+    "maximum": 14294.0,
+    "q01": 1.0,
+    "q99": 1122.0
+  },
+  "DepositAmountPrevMean": {
+    "type": "numeric",
+    "dtype": "float64",
+    "default": 1505.6818186442058,
+    "minimum": 100.0,
+    "maximum": 292576.92307692306,
+    "q01": 115.78947368421052,
+    "q99": 27611.048135593173
+  },
+  "ScorumBetMax": {
+    "type": "numeric",
+    "dtype": "float64",
+    "default": 100.0,
+    "minimum": 0.0,
+    "maximum": 8567950.0,
+    "q01": 0.0,
+    "q99": 263358.0000000023
+  },
+  "DepositAmountPrevH10": {
+    "type": "numeric",
+    "dtype": "float64",
+    "default": 1150.0,
+    "minimum": 0.0,
+    "maximum": 3991000.0,
+    "q01": 0.0,
+    "q99": 144726.07999999987
+  },
+  "RecencyFirstBet": {
+    "type": "numeric",
+    "dtype": "float64",
+    "default": 613.0,
+    "minimum": 0.0,
+    "maximum": 20171.0,
+    "q01": 12.0,
+    "q99": 2410.1600000000035
+  },
+  "RecencyFirstDeposit": {
+    "type": "numeric",
+    "dtype": "float64",
+    "default": 616.0,
+    "minimum": 0.0,
+    "maximum": 2854.0,
+    "q01": 12.0,
+    "q99": 2381.0
+  },
+  "DepositAmountPrevH6": {
+    "type": "numeric",
+    "dtype": "float64",
+    "default": 1550.0,
+    "minimum": 0.0,
+    "maximum": 5625000.0,
+    "q01": 0.0,
+    "q99": 153208.55999999997
+  },
+  "DepositAmountPrevMax": {
+    "type": "numeric",
+    "dtype": "float64",
+    "default": 6500.0,
+    "minimum": 100.0,
+    "maximum": 1385000.0,
+    "q01": 200.0,
+    "q99": 155421.59999999916
+  },
+  "GGR60Days": {
+    "type": "numeric",
+    "dtype": "float64",
+    "default": 6520.0,
+    "minimum": -2541340.0,
+    "maximum": 1406788.0,
+    "q01": -59644.56,
+    "q99": 210422.72000000032
+  },
+  "DepositAmountPrevStdDev": {
+    "type": "numeric",
+    "dtype": "float64",
+    "default": 1462.5384993982968,
+    "minimum": 0.0,
+    "maximum": 310166.23000688903,
+    "q01": 25.210737174883242,
+    "q99": 34649.36608595663
+  },
+  "LossBets60Days": {
+    "type": "numeric",
+    "dtype": "float64",
+    "default": 109.0,
+    "minimum": 0.0,
+    "maximum": 46849.0,
+    "q01": 2.0,
+    "q99": 2443.0
+  },
+  "BetAmountSumLast14": {
+    "type": "numeric",
+    "dtype": "float64",
+    "default": 9086.004,
+    "minimum": 0.0,
+    "maximum": 7655996.0,
+    "q01": 0.0,
+    "q99": 557618.0324400003
+  },
+  "WinBets60Days": {
+    "type": "numeric",
+    "dtype": "float64",
+    "default": 128.0,
+    "minimum": 0.0,
+    "maximum": 41184.0,
+    "q01": 2.0,
+    "q99": 3004.0
+  },
+  "DepositAmountPrevH5": {
+    "type": "numeric",
+    "dtype": "float64",
+    "default": 2350.0,
+    "minimum": 0.0,
+    "maximum": 2197900.0,
+    "q01": 0.0,
+    "q99": 168441.99999999983
+  },
+  "DepositAmountPrevH4": {
+    "type": "numeric",
+    "dtype": "float64",
+    "default": 2500.0,
+    "minimum": 0.0,
+    "maximum": 2228500.0,
+    "q01": 0.0,
+    "q99": 159000.0
+  },
+  "DepositAmountPrevH8": {
+    "type": "numeric",
+    "dtype": "float64",
+    "default": 1628.0,
+    "minimum": 0.0,
+    "maximum": 1900000.0,
+    "q01": 0.0,
+    "q99": 160188.59999999986
+  },
+  "DepositAmountPrevH9": {
+    "type": "numeric",
+    "dtype": "float64",
+    "default": 1420.0,
+    "minimum": 0.0,
+    "maximum": 4855500.0,
+    "q01": 0.0,
+    "q99": 149936.7799999998
+  },
+  "DepositAmountPrevH3": {
+    "type": "numeric",
+    "dtype": "float64",
+    "default": 3210.0,
+    "minimum": 0.0,
+    "maximum": 2903200.0,
+    "q01": 0.0,
+    "q99": 180686.89999999967
+  },
+  "BetsSegment": {
+    "type": "categorical",
+    "default": "0-17",
+    "categories": [
+      "0-17",
+      "127-297",
+      "17-47",
+      "297+",
+      "47-127",
+      "Missing"
+    ]
+  },
+  "RecencyLastBonusUsed": {
+    "type": "numeric",
+    "dtype": "float64",
+    "default": 41.0,
+    "minimum": 0.0,
+    "maximum": 20171.0,
+    "q01": 1.0,
+    "q99": 20171.0
+  },
+  "DepositAmountPrevH2": {
+    "type": "numeric",
+    "dtype": "float64",
+    "default": 3835.0,
+    "minimum": 0.0,
+    "maximum": 1422940.0,
+    "q01": 0.0,
+    "q99": 176983.17999999993
+  },
+  "DepositAmountPrevH7": {
+    "type": "numeric",
+    "dtype": "float64",
+    "default": 1258.0,
+    "minimum": 0.0,
+    "maximum": 4499000.0,
+    "q01": 0.0,
+    "q99": 161657.85999999975
+  },
+  "GGR7Days": {
+    "type": "numeric",
+    "dtype": "float64",
+    "default": 500.0,
+    "minimum": -548970.0,
+    "maximum": 469149.49069595337,
+    "q01": -31463.28,
+    "q99": 48397.60000000012
+  }
+}

@@ -1,47 +1,9 @@
-from pathlib import Path
-import sys
-
-
-import streamlit as st
-import seaborn as sns
 import matplotlib.pyplot as plt
 import numpy as np
-import pandas as pd
+import seaborn as sns
+import streamlit as st
 
-SCRIPT_DIR = Path(__file__).resolve().parent
-if str(SCRIPT_DIR) not in sys.path:
-    sys.path.insert(0, str(SCRIPT_DIR))
-
-from data_dictionary import variables, main_variables
-
-
-st.set_page_config(
-    page_title="churn_predict",
-    page_icon=":bar_chart:",
-    layout="wide"
-
-)
-
-APP_TITLE = "Анализ оттока клиентов"
-
-PATH_MODEL = ""
-
-PROJECT_ROOT = Path(__file__).resolve().parents[1]
-
-DATA_PATH = (
-    PROJECT_ROOT
-    / "data"
-    / "dataset_processed.parquet"
-)
-
-@st.cache_data
-def load_data(path):
-    return pd.read_parquet(path)
-
-
-@st.cache_resource
-def load_model(path):
-    return joblib.load(path)
+from data_dictionary import variables
 
 
 @st.cache_data
@@ -49,74 +11,7 @@ def calculate_spearman_correlation(data):
     return data.corr(method="spearman")
 
 
-
-
-df = load_data(DATA_PATH)
-
-
-with st.sidebar:
-    st.title("Настройки")
-
-    prediction_mode = st.radio(
-        "Режим прогноза",
-        ["Исторический клиент", "Ручной сценарий"],
-    )
-
-    threshold = st.slider(
-        "Threshold",
-        min_value=0.1,
-        max_value=0.9,
-        value=0.6,
-        step=0.05,
-    )
-
-
-
-st.title(APP_TITLE)
-st.subheader("Информация о проекте:")
-st.write("Цель проекта, на основе данных об оотоке пользователь из букмекерской конторы, построить модель предсказывающую отток клиента, для возможности его удержания")
-
-tab_overview, tab_analytics, tab_models, tab_prediction = st.tabs([
-    "Обзор данных",
-    "Анализ датасета",
-    "Сравнение моделей",
-    "Прогноз клиента",
-])
-
-
-
-with tab_overview:
-    st.subheader("Обзор данных")
-    st.write("""
-    Датасет представляет собой данные по финансовым операциям игроков в БК.
-    В нём содержатся такие переменные, как количество ставок, депозитов и выводов.
-
-    Опираясь на эту информацию, мы попытаемся спрогнозировать, уйдёт ли клиент в отток.
-
-    Ниже представлен обзор всех переменных.
-    """)
-
-    st.write("Датасет представляет собой клиентский срез, сформированный осенью 2025 года. Все признаки отражают информацию, зафиксированную на момент формирования среза.")
-
-  
-    variables_df = pd.DataFrame(
-        variables.items(),
-        columns=["Переменная", "Описание"],
-    )
-
-    main_variables_df = pd.DataFrame(
-        main_variables.items(),
-        columns=["Переменная", "Описание"],
-    )
-
-    with st.expander("Основные переменные датасета"):
-        st.table(main_variables)
-
-    with st.expander("Полное описание переменных"):
-        st.table(variables_df)
-
-
-with tab_analytics:
+def render_analytics(df) -> None:
     st.subheader("Анализ оттока")
 
     st.write(
@@ -194,7 +89,7 @@ with tab_analytics:
 
     st.dataframe(
     profile_df,
-    use_container_width=True,
+    width="stretch",
     )
 
 
@@ -436,7 +331,7 @@ with tab_analytics:
         st.dataframe(
             descriptive_stats,
             hide_index=True,
-            use_container_width=True,
+            width="stretch",
         )
 
 
@@ -514,198 +409,6 @@ with tab_analytics:
         st.dataframe(
             missing_df,
             hide_index=True,
-            use_container_width=True,
+            width="stretch",
         )
-
-
-with tab_models:
-    st.subheader("Метрики моделей")
-    st.write(
-        "Все модели оценивались на одной тестовой выборке. "
-        "Гиперпараметры и threshold выбирались на validation."
-    )
-
-    model_results = pd.DataFrame([
-        {
-            "Модель": "CatBoost",
-            "Threshold": 0.60,
-            "Accuracy": 0.941,
-            "Precision": 0.723,
-            "Recall": 0.826,
-            "F1": 0.771,
-            "ROC-AUC": 0.978,
-            "PR-AUC": 0.853,
-        },
-        {
-            "Модель": "XGBoost",
-            "Threshold": 0.60,
-            "Accuracy": 0.929,
-            "Precision": 0.666,
-            "Recall": 0.827,
-            "F1": 0.738,
-            "ROC-AUC": 0.971,
-            "PR-AUC": 0.794,
-        },
-        {
-            "Модель": "Logistic Regression",
-            "Threshold": 0.75,
-            "Accuracy": 0.911,
-            "Precision": 0.604,
-            "Recall": 0.746,
-            "F1": 0.667,
-            "ROC-AUC": 0.949,
-            "PR-AUC": 0.660,
-        },
-        {
-            "Модель": "Наивный baseline",
-            "Threshold": 0.50,
-            "Accuracy": 0.880,
-            "Precision": 0.000,
-            "Recall": 0.000,
-            "F1": 0.000,
-            "ROC-AUC": 0.500,
-            "PR-AUC": 0.120,
-        },
-    ])
-
-    st.subheader("Лучшая модель: CatBoost")
-
-    metric_col1, metric_col2, metric_col3, metric_col4, metric_col5 = (
-        st.columns(5)
-    )
-
-    with metric_col1:
-        st.metric(
-            "Precision",
-            "0.723",
-            "+0.057 к XGBoost",
-        )
-
-    with metric_col2:
-        st.metric(
-            "Recall",
-            "0.826",
-            "-0.001 к XGBoost",
-        )
-
-    with metric_col3:
-        st.metric(
-            "F1",
-            "0.771",
-            "+0.033 к XGBoost",
-        )
-
-    with metric_col4:
-        st.metric(
-            "ROC-AUC",
-            "0.978",
-            "+0.007 к XGBoost",
-        )
-
-    with metric_col5:
-        st.metric(
-            "PR-AUC",
-            "0.853",
-            "+0.059 к XGBoost",
-        )
-
-    st.success(
-        """
-        Для итогового прогнозирования выбрана модель **CatBoost**.
-
-        Она показала лучший результат по F1 и PR-AUC, сохранив практически
-        такой же recall, как XGBoost, но заметно повысив precision.
-        Это означает, что CatBoost находит примерно столько же реальных
-        уходов, но делает меньше ложных предупреждений.
-        """
-    )
-
-
-    st.subheader("Итоговые метрики на test")
-
-    st.dataframe(
-        model_results,
-        hide_index=True,
-        width="stretch",
-        column_config={
-            "Модель": st.column_config.TextColumn(
-                "Модель",
-                width="large",
-            ),
-            "Threshold": st.column_config.NumberColumn(
-                "Threshold",
-                format="%.2f",
-            ),
-            "Accuracy": st.column_config.ProgressColumn(
-                "Accuracy",
-                format="%.3f",
-                min_value=0,
-                max_value=1,
-            ),
-            "Precision": st.column_config.ProgressColumn(
-                "Precision",
-                format="%.3f",
-                min_value=0,
-                max_value=1,
-            ),
-            "Recall": st.column_config.ProgressColumn(
-                "Recall",
-                format="%.3f",
-                min_value=0,
-                max_value=1,
-            ),
-            "F1": st.column_config.ProgressColumn(
-                "F1",
-                format="%.3f",
-                min_value=0,
-                max_value=1,
-            ),
-            "ROC-AUC": st.column_config.ProgressColumn(
-                "ROC-AUC",
-                format="%.3f",
-                min_value=0,
-                max_value=1,
-            ),
-            "PR-AUC": st.column_config.ProgressColumn(
-                "PR-AUC",
-                format="%.3f",
-                min_value=0,
-                max_value=1,
-            ),
-        },
-    )
-
-
-    with st.expander("Почему для сравнения важен PR-AUC"):
-        st.write(
-            """
-            В датасете присутствует дисбаланс классов: только около 12% клиентов относятся к классу
-            оттока. Поэтому одной accuracy недостаточно: модель может
-            получить высокую accuracy, почти всегда предсказывая класс
-            «остался».
-
-            PR-AUC оценивает, насколько хорошо модель находит редкий
-            класс `churn=1` и сохраняет точность таких прогнозов.
-            CatBoost получила самое высокое значение PR-AUC: 0.853.
-            """
-        )
-
-    with st.expander("Конфигурация выбранной модели"):
-        st.write(
-            """
-            - Модель: CatBoostClassifier
-            - Количество признаков: 40
-            - Threshold: 0.60
-            - Количество деревьев: 950
-            - Глубина деревьев: 5
-            - Learning rate: 0.0632
-            - Подбор параметров: Optuna
-            - Балансировка классов: SqrtBalanced
-            """
-        )
-
-
-with tab_prediction:
-    st.subheader("Индивидуальный прогноз")
-    st.warning("Раздел в разработке")
 
